@@ -1,9 +1,9 @@
-package com.pedro.CadastroDeNinja;
+package com.pedro.CadastroDeNinja.Ninjas;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Ninja_Registry")
+@Table(name = "TB_Ninja_Registry")
 public class ninjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
