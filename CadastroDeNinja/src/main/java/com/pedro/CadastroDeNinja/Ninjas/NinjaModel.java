@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Create a default constructor
 @AllArgsConstructor // Create an overload constructor
 @Data // Create all getters and setters
-public class ninjaModel {
+public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

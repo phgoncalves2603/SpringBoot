@@ -1,6 +1,6 @@
 package com.pedro.CadastroDeNinja.Quests;
 
-import com.pedro.CadastroDeNinja.Ninjas.ninjaModel;
+import com.pedro.CadastroDeNinja.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +20,6 @@ public class QuestsModel {
     private String rank;
     @OneToMany(mappedBy = "quests") //need to map with the same name of the column in other table
     //one quest to many ninjas
-    private List<ninjaModel> ninjas;
+    private List<NinjaModel> ninjas;
 
 }
