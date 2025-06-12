@@ -2,9 +2,16 @@ package com.pedro.CadastroDeNinja.Quests;
 
 import com.pedro.CadastroDeNinja.Ninjas.ninjaModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 @Entity
 @Table(name="TB_Quests")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class QuestsModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,30 +21,5 @@ public class QuestsModel {
     @OneToMany(mappedBy = "quests") //need to map with the same name of the column in other table
     //one quest to many ninjas
     private List<ninjaModel> ninjas;
-
-    public QuestsModel() {
-    }
-
-    public QuestsModel(String description, String rank) {
-        this.description = description;
-        this.rank = rank;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
 
 }
