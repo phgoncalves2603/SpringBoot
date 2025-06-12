@@ -1,5 +1,6 @@
 package com.pedro.CadastroDeNinja.Ninjas;
 
+import com.pedro.CadastroDeNinja.Quests.QuestsModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +12,10 @@ public class ninjaModel {
     private String name;
     private String email;
     private int age;
+
+    @ManyToOne //many quests to 1 ninja
+    @JoinColumn(name = "quests_id")// Foreign Key
+    private QuestsModel quests;
 
     public ninjaModel() {
     }
