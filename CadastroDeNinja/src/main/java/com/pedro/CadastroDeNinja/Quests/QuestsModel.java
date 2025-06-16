@@ -26,4 +26,3 @@ public class QuestsModel {
     private List<ninjaModel> ninjas;
 
 }
-```
