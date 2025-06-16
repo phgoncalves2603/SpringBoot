@@ -15,10 +15,13 @@ import lombok.NoArgsConstructor;
 public class ninjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+    @Column(name ="Ninja_Name")
     private String name;
-    @Column(unique = true) // Make column value unique
+    @Column(unique = true, name = "Email") // Make column value unique
     private String email;
+    @Column(name = "Age")
     private int age;
 
     @ManyToOne //many quests to 1 ninja

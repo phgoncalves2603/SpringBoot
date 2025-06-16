@@ -15,11 +15,15 @@ import java.util.List;
 public class QuestsModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "Quest_Description")
     private String description;
+    @Column(name = "Quest_Rank")
     private String rank;
     @OneToMany(mappedBy = "quests") //need to map with the same name of the column in other table
     //one quest to many ninjas
     private List<ninjaModel> ninjas;
 
 }
+```
