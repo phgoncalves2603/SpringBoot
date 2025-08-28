@@ -2,6 +2,8 @@ package com.pedro.CadastroDeNinja.Ninjas;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class NinjaService {
     //@Autowired same as initialize a constructor
@@ -13,6 +15,12 @@ public class NinjaService {
     public List<ninjaModel> showAllNinjas(){
        return ninjaRepository.findAll();
     }
+    public ninjaModel searchById(Long id){
+        Optional<ninjaModel> ninja = ninjaRepository.findById(id);
+        return ninja.orElse(null);
+    }
+
+
 
 
 }
