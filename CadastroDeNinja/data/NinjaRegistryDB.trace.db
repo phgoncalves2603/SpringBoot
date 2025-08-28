@@ -1,3 +1,15 @@
 2025-08-26 08:38:59.555721-04:00 jdbc[14]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO TB_QUESTS(ID,QUEST_DESCRIPTION,QUEST_RANK)[*]"; expected "OVERRIDING USER VALUE, OVERRIDING SYSTEM VALUE, DIRECT, DEFAULT VALUES, VALUES, SET, WITH, (, SELECT, TABLE, VALUES"; SQL statement:
 INSERT INTO TB_QUESTS(ID,QUEST_DESCRIPTION,QUEST_RANK) [42001-232]
+2025-08-27 18:46:23.263235-04:00 jdbc[31]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO TB_NINJA_REGISTRY (id,age,email,ninja_name, quests_id,rank)\000d\000a[*]valeus(""1"",17,""naruto@gmail.com"",""Naruto"",1,""genin"")"; expected "OVERRIDING USER VALUE, OVERRIDING SYSTEM VALUE, DIRECT, DEFAULT VALUES, VALUES, SET, WITH, (, SELECT, TABLE, VALUES"; SQL statement:
+INSERT INTO TB_NINJA_REGISTRY (id,age,email,ninja_name, quests_id,rank)
+valeus("1",17,"naruto@gmail.com","Naruto",1,"genin") [42001-232]
+2025-08-27 18:46:50.006647-04:00 jdbc[31]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO TB_NINJA_REGISTRY (id,age,email,ninja_name, quests_id,rank)\000d\000a[*]valeus(1,17,'naruto@gmail.com','Naruto',1,'genin')"; expected "OVERRIDING USER VALUE, OVERRIDING SYSTEM VALUE, DIRECT, DEFAULT VALUES, VALUES, SET, WITH, (, SELECT, TABLE, VALUES"; SQL statement:
+INSERT INTO TB_NINJA_REGISTRY (id,age,email,ninja_name, quests_id,rank)
+valeus(1,17,'naruto@gmail.com','Naruto',1,'genin') [42001-232]
+2025-08-27 18:47:57.236338-04:00 jdbc[31]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO TB_NINJA_REGISTRY (ID, AGE, EMAIL, NINJA_NAME, QUESTS_ID, RANK)\000d\000a[*]valeus(1,17,'naruto@gmail.com','Naruto',1,'genin')"; expected "OVERRIDING USER VALUE, OVERRIDING SYSTEM VALUE, DIRECT, DEFAULT VALUES, VALUES, SET, WITH, (, SELECT, TABLE, VALUES"; SQL statement:
+INSERT INTO TB_NINJA_REGISTRY (ID, AGE, EMAIL, NINJA_NAME, QUESTS_ID, RANK)
+valeus(1,17,'naruto@gmail.com','Naruto',1,'genin') [42001-232]

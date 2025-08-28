@@ -1,10 +1,21 @@
 package com.pedro.CadastroDeNinja.Ninjas;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping
+@RequestMapping("ninjas")
 public class NinjaController {
+
+
+    private NinjaService ninjaService;
+    public NinjaController(NinjaService ninjaService){
+        this.ninjaService = ninjaService;
+    }
+
+
     @GetMapping("/welcome")
     public String welcome(){
         return "Welcome to Cadastro de Ninja!";
@@ -30,8 +41,8 @@ public class NinjaController {
     }
     //show all (Read)
     @GetMapping("/showAll")
-    public String showAll(){
-        return "Ninja Created";
+    public List<ninjaModel> showAll(){
+        return ninjaService.showAllNinjas();
     }
 
     //delete ninja (Deleted)
