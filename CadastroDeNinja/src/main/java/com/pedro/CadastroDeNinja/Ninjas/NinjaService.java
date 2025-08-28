@@ -15,9 +15,14 @@ public class NinjaService {
     public List<ninjaModel> showAllNinjas(){
        return ninjaRepository.findAll();
     }
+    //show ninja by id
     public ninjaModel searchById(Long id){
         Optional<ninjaModel> ninja = ninjaRepository.findById(id);
         return ninja.orElse(null);
+    }
+    //create a new ninja
+    public ninjaModel createNinja(ninjaModel newNinja ){
+       return ninjaRepository.save(newNinja);
     }
 
 

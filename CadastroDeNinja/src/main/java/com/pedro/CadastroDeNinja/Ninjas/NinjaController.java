@@ -21,9 +21,9 @@ public class NinjaController {
         return "Welcome to Cadastro de Ninja!";
     }
     //add ninja (Create)
-    @GetMapping("/Create")
-    public String create(){
-        return "Ninja Created";
+    @PostMapping("/Create")
+    public ninjaModel createNinja(@RequestBody ninjaModel newNinja ){ // @RequestBody
+        return ninjaService.createNinja(newNinja);
     }
 
 
