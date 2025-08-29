@@ -5,10 +5,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("Quests/")//localhost:8080/Quests/...
 public class QuestController {
+    QuestService questService;
+    public QuestController( QuestService questService){
+        this.questService = questService;
+    }
     //add quest
-    @PutMapping("Create")
-    public String addQuest(){
-        return "Quest Added";
+    @PostMapping("Create")
+    public QuestsModel addQuest(@RequestBody QuestsModel quest){
+        return questService.addQuest(quest);
+
     }
 
     //edit quest
