@@ -2,6 +2,8 @@ package com.pedro.CadastroDeNinja.Quests;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("Quests/")//localhost:8080/Quests/...
 public class QuestController {
@@ -13,7 +15,6 @@ public class QuestController {
     @PostMapping("Create")
     public QuestsModel addQuest(@RequestBody QuestsModel quest){
         return questService.addQuest(quest);
-
     }
 
     //edit quest
@@ -23,20 +24,21 @@ public class QuestController {
     }
 
     //search by id
-    @GetMapping("SearchID")
-    public String searchQuestById(){
-        return "Quest found";
+    @GetMapping("Search/{id}")
+    public QuestsModel searchQuestById(@PathVariable Long id){
+        return questService.searchQuestById(id);
     }
 
     //show all quests
     @GetMapping("showAll")
-    public String showAllQuests(){
-        return "all Quests";
+    public List<QuestsModel> showAllQuests(){
+        return questService.showAllQuests();
     }
 
     //delete
-    @DeleteMapping("deleteID")
-    public String deleteById(){
+    @DeleteMapping("delete/{id}")
+    public String deleteById(@PathVariable Long id){
+        questService.deleteById(id);
         return "Quest deleted";
     }
 
