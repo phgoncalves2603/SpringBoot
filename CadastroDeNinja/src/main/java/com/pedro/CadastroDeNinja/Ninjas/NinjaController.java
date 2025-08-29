@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("ninjas")
+@RequestMapping("ninjas/")
 public class NinjaController {
 
 
@@ -16,37 +16,37 @@ public class NinjaController {
     }
 
 
-    @GetMapping("/welcome")
+    @GetMapping("welcome")
     public String welcome(){
         return "Welcome to Cadastro de Ninja!";
     }
     //add ninja (Create)
-    @PostMapping("/Create")
+    @PostMapping("Create")
     public ninjaModel createNinja(@RequestBody ninjaModel newNinja ){ // @RequestBody
         return ninjaService.createNinja(newNinja);
     }
 
 
     //search ninja by id (Read)
-    @GetMapping("/search/{id}")
+    @GetMapping("search/{id}")
     public ninjaModel searchById(@PathVariable Long id){
         return ninjaService.searchById(id);
     }
 
 
     //change ninja data (Update)
-    @PutMapping("/updateID")
-    public String update(){
-        return "Ninja Created";
+    @PutMapping("update/{id}")
+    public ninjaModel updateNinja(@PathVariable Long id, @RequestBody ninjaModel updatedNinja){
+        return ninjaService.updateNinja(id, updatedNinja);
     }
     //show all (Read)
-    @GetMapping("/showAll")
+    @GetMapping("showAll")
     public List<ninjaModel> showAll(){
         return ninjaService.showAllNinjas();
     }
 
     //delete ninja (Deleted)
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("delete/{id}")
     public void deleteNinja(@PathVariable Long id){
         ninjaService.deleteNinja(id);
     }

@@ -32,6 +32,14 @@ public class QuestService {
     public void deleteById(Long id){
         questsRepository.deleteById(id);
     }
+    //update quest
+    public QuestsModel updateQuest(Long id, QuestsModel updatedQuest){
+        if (questsRepository.existsById(id)){
+            updatedQuest.setId(id);
+            return questsRepository.save(updatedQuest);
+        }
+        return null;
+    }
 
 
 

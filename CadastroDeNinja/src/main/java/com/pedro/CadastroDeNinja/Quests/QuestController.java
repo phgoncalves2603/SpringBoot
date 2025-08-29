@@ -5,26 +5,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("Quests/")//localhost:8080/Quests/...
+@RequestMapping("quests/")//localhost:8080/Quests/...
 public class QuestController {
     QuestService questService;
     public QuestController( QuestService questService){
         this.questService = questService;
     }
     //add quest
-    @PostMapping("Create")
+    @PostMapping("create")
     public QuestsModel addQuest(@RequestBody QuestsModel quest){
         return questService.addQuest(quest);
     }
 
     //edit quest
-    @PutMapping("UpdateID")
-    public String updateQuest(){
-        return "Quest updated";
+    @PutMapping("update/{id}")
+    public QuestsModel updateQuest(@PathVariable Long id, @RequestBody QuestsModel updatedQuest){
+        return questService.updateQuest(id, updatedQuest);
     }
 
     //search by id
-    @GetMapping("Search/{id}")
+    @GetMapping("search/{id}")
     public QuestsModel searchQuestById(@PathVariable Long id){
         return questService.searchQuestById(id);
     }
