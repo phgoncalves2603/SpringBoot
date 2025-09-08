@@ -29,19 +29,19 @@ public class NinjaController {
 
     //search ninja by id (Read)
     @GetMapping("search/{id}")
-    public ninjaModel searchById(@PathVariable Long id){
+    public NinjaDTO searchById(@PathVariable Long id){
         return ninjaService.searchById(id);
     }
 
 
     //change ninja data (Update)
     @PutMapping("update/{id}")
-    public ninjaModel updateNinja(@PathVariable Long id, @RequestBody ninjaModel updatedNinja){
+    public NinjaDTO updateNinja(@PathVariable Long id, @RequestBody NinjaDTO updatedNinja){
         return ninjaService.updateNinja(id, updatedNinja);
     }
     //show all (Read)
     @GetMapping("showAll")
-    public List<ninjaModel> showAll(){
+    public List<NinjaDTO> showAll(){
         return ninjaService.showAllNinjas();
     }
 
