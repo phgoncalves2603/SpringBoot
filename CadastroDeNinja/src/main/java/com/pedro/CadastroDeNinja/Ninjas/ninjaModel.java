@@ -23,7 +23,8 @@ public class ninjaModel {
     private String email;
     @Column(name = "Age")
     private int age;
-
+    @Column(name = "Rank")
+    private String rank;
     @ManyToOne //many quests to 1 ninja
     @JoinColumn(name = "quests_id")// Foreign Key
     private QuestsModel quests;
