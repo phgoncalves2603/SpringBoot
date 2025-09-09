@@ -8,30 +8,32 @@ import java.util.List;
 @RequestMapping("quests/")//localhost:8080/Quests/...
 public class QuestController {
     QuestService questService;
-    public QuestController( QuestService questService){
+
+    public QuestController( QuestService questService ){
         this.questService = questService;
+
     }
     //add quest
     @PostMapping("create")
-    public QuestsModel addQuest(@RequestBody QuestsModel quest){
+    public QuestsDTO addQuest(@RequestBody QuestsDTO quest){
         return questService.addQuest(quest);
     }
 
     //edit quest
     @PutMapping("update/{id}")
-    public QuestsModel updateQuest(@PathVariable Long id, @RequestBody QuestsModel updatedQuest){
+    public QuestsDTO updateQuest(@PathVariable Long id, @RequestBody QuestsDTO updatedQuest){
         return questService.updateQuest(id, updatedQuest);
     }
 
     //search by id
     @GetMapping("search/{id}")
-    public QuestsModel searchQuestById(@PathVariable Long id){
+    public QuestsDTO searchQuestById(@PathVariable Long id){
         return questService.searchQuestById(id);
     }
 
     //show all quests
     @GetMapping("showAll")
-    public List<QuestsModel> showAllQuests(){
+    public List<QuestsDTO> showAllQuests(){
         return questService.showAllQuests();
     }
 
