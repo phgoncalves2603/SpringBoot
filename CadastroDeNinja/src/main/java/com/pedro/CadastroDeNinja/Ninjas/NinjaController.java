@@ -34,20 +34,34 @@ public class NinjaController {
 
     //search ninja by id (Read)
     @GetMapping("search/{id}")
-    public NinjaDTO searchById(@PathVariable Long id){
-        return ninjaService.searchById(id);
+    public ResponseEntity<?> searchById(@PathVariable Long id){
+        NinjaDTO ninjaDTO = ninjaService.searchById(id);
+
+        if (ninjaDTO!=null){
+            return ResponseEntity.ok(ninjaDTO);
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Ninja (ID): "+id+" Not found");
+        }
     }
 
 
     //change ninja data (Update)
     @PutMapping("update/{id}")
-    public NinjaDTO updateNinja(@PathVariable Long id, @RequestBody NinjaDTO updatedNinja){
-        return ninjaService.updateNinja(id, updatedNinja);
+    public ResponseEntity<?> updateNinja(@PathVariable Long id, @RequestBody NinjaDTO updatedNinja){
+        if(ninjaService.searchById(id)!=null){
+           NinjaDTO ninjaDTO =  ninjaService.updateNinja(id, updatedNinja);
+            return ResponseEntity.ok(ninjaDTO);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Ninja (ID): "+updatedNinja.getId()+" Not Found");
+
     }
     //show all (Read)
     @GetMapping("showAll")
-    public List<NinjaDTO> showAll(){
-        return ninjaService.showAllNinjas();
+    public ResponseEntity<List<NinjaDTO>> showAll(){
+        List<NinjaDTO> ninjaDTOList = ninjaService.showAllNinjas();
+        return ResponseEntity.ok(ninjaDTOList);
     }
 
     //delete ninja (Deleted)
