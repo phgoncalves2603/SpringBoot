@@ -1,6 +1,8 @@
 package com.pedro.CadastroDeNinja.Ninjas;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +24,11 @@ public class NinjaController {
     }
     //add ninja (Create)
     @PostMapping("Create")
-    public NinjaDTO createNinja(@RequestBody NinjaDTO newNinja ){ // @RequestBody
-        return ninjaService.createNinja(newNinja);
+    public ResponseEntity<String> createNinja(@RequestBody NinjaDTO newNinja ){ // @RequestBody
+        NinjaDTO ninjaDTO =  ninjaService.createNinja(newNinja);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Ninja Successfully created: "+ newNinja.getName()+" (ID): "+newNinja.getId());
+
     }
 
 
@@ -47,7 +52,13 @@ public class NinjaController {
 
     //delete ninja (Deleted)
     @DeleteMapping("delete/{id}")
-    public void deleteNinja(@PathVariable Long id){
-        ninjaService.deleteNinja(id);
+    public ResponseEntity<String> deleteNinja(@PathVariable Long id){
+        if (ninjaService.searchById(id)!=null) {
+            ninjaService.deleteNinja(id);
+            return ResponseEntity.ok("Ninja Successfully deleted (ID): " + id);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Ninja (ID): "+id+" not found");
+
     }
 }
