@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "TB_Ninja_Registry")
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Create a default constructor
 @AllArgsConstructor // Create an overload constructor
 @Data // Create all getters and setters
+@ToString(exclude = "quests")
 public class ninjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
