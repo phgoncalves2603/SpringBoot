@@ -97,6 +97,17 @@
       <option value="Hokage">Hokage</option>
     </select>
 
+    <!-- Quest dropdown -->
+    <label for="quest">Quest:</label>
+    <select id="quest" th:field="*{quests.id}">
+      <option value="" disabled>Select a quest</option>
+      <option th:each="quest : ${quests}"
+              th:value="${quest.id}"
+              th:text="${quest.description}"
+      >
+      </option>
+    </select>
+
     <button type="submit">Add Ninja</button>
   </form>
 
