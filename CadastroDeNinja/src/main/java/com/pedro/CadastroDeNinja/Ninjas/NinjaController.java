@@ -23,7 +23,7 @@ public class NinjaController {
         return "Welcome to Cadastro de Ninja!";
     }
     //add ninja (Create)
-    @PostMapping("Create")
+    @PostMapping("create")
     public ResponseEntity<String> createNinja(@RequestBody NinjaDTO newNinja ){ // @RequestBody
         NinjaDTO ninjaDTO =  ninjaService.createNinja(newNinja);
         return ResponseEntity.status(HttpStatus.CREATED)
