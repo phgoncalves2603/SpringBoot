@@ -99,13 +99,15 @@
             <td th:text="${ninja.age}"></td>
             <td th:text="${ninja.email}"></td>
             <td th:text="${ninja.rank}"></td>
+
             <td>
                 <span th:if="${ninja.quests}"> <span th:text="${ninja.quests.description}"></span>, Difficulty: <span th:text="${ninja.quests.rank}"></span></span>
                 <span th:if="${ninja.quests == null}">No Quests</span>
+
             </td>
             <td>
                 <a th:href="@{/ninjas/ui/search/{id}(id=${ninja.id})}">Details</a>
-                <a th:href="@{/ninjas/ui/delete/{id}(id=${ninja.id})}">Update</a>
+                <a th:href="@{/ninjas/ui/updateNinja/{id}(id=${ninja.id})}">Update</a>
                 <a th:href="@{/ninjas/ui/delete/{id}(id=${ninja.id})}">Delete</a>
 
             </td>
