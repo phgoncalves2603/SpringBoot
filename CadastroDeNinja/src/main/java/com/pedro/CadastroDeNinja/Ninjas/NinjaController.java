@@ -51,11 +51,10 @@ public class NinjaController {
     public ResponseEntity<?> updateNinja(@PathVariable Long id, @RequestBody NinjaDTO updatedNinja){
         if(ninjaService.searchById(id)!=null){
            NinjaDTO ninjaDTO =  ninjaService.updateNinja(id, updatedNinja);
-            return ResponseEntity.ok(ninjaDTO);
+           return ResponseEntity.ok(ninjaDTO);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Ninja (ID): "+updatedNinja.getId()+" Not Found");
-
     }
     //show all (Read)
     @GetMapping("showAll")
