@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Quest</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 40px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 25px;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    a.back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: white;
+      background: #7f8c8d;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    a.back-btn:hover {
+      background: #636e72;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Add Quest</h1>
+
+  <form th:action="@{/quests/ui/save}" th:object="${quest}" method="post">
+    <label for="description">Quest Description:</label>
+    <input type="text" id="description" th:field="*{description}" required>
+
+    <label for="rank">Difficulty (Rank):</label>
+    <select id="rank" th:field="*{rank}" required>
+      <option value="" disabled selected>Select difficulty</option>
+      <option value="EASY">Easy</option>
+      <option value="MEDIUM">Medium</option>
+      <option value="HARD">Hard</option>
+    </select>
+
+    <button type="submit">Add Quest</button>
+  </form>
+
+  <a class="back-btn" th:href="@{/quests/ui/showAll}">Back to List</a>
+</div>
+</body>
+</html>

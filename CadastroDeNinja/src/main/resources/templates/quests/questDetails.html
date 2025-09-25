@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quest Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 40px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .value {
+            color: #2c3e50;
+        }
+
+        .rank-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .rank-easy {
+            background-color: #2ecc71; /* green */
+        }
+
+        .rank-medium {
+            background-color: #f1c40f; /* yellow */
+            color: #333;
+        }
+
+        .rank-hard {
+            background-color: #e74c3c; /* red */
+        }
+        .rank-genin {
+            background-color: #2ecc71; /* green */
+        }
+
+        .rank-chunin {
+            background-color: #f1c40f; /* yellow */
+            color: #333;
+        }
+
+        .rank-jonin {
+            background-color: #e74c3c; /* red */
+        }
+
+        .rank-hokage {
+            background-color: #9b59b6; /* purple */
+        }
+
+
+        .ninjas-list {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .ninjas-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .ninjas-list li {
+            padding: 5px 0;
+        }
+
+        a.back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background: #3498db;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        a.back-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${quest.description} + ' Details'">Quest Details</h1>
+
+    <div class="detail">
+        <span class="label">ID:</span>
+        <span class="value" th:text="${quest.id}">1</span>
+    </div>
+
+    <div class="detail">
+        <span class="label">Description:</span>
+        <span class="value" th:text="${quest.description}">Protect the village</span>
+    </div>
+
+    <div class="detail">
+        <span class="label">Difficulty:</span>
+        <span class="value">
+            <span th:if="${quest.rank.toUpperCase() == 'EASY'}" class="rank-badge rank-easy" th:text="${quest.rank.toUpperCase()}">Easy</span>
+            <span th:if="${quest.rank.toUpperCase() == 'MEDIUM'}" class="rank-badge rank-medium" th:text="${quest.rank.toUpperCase()}">Medium</span>
+            <span th:if="${quest.rank.toUpperCase() == 'HARD'}" class="rank-badge rank-hard" th:text="${quest.rank.toUpperCase()}">Hard</span>
+        </span>
+    </div>
+    <div class="ninjas-list" th:if="${quest.ninjas != null and #lists.size(quest.ninjas) > 0}">
+        <h3>Assigned Ninjas</h3>
+        <ul>
+            <li th:each="ninja : ${quest.ninjas}">
+                <span th:text="${ninja.name}">Ninja Name</span>
+                <span th:if="${ninja.rank == 'Genin'}" class="rank-badge rank-genin" th:text="'(' + ${ninja.rank} + ')'">(Genin)</span>
+                <span th:if="${ninja.rank == 'Chunin'}" class="rank-badge rank-chunin" th:text="'(' + ${ninja.rank} + ')'">(Chunin)</span>
+                <span th:if="${ninja.rank == 'Jonin'}" class="rank-badge rank-jonin" th:text="'(' + ${ninja.rank} + ')'">(Jonin)</span>
+                <span th:if="${ninja.rank == 'Hokage'}" class="rank-badge rank-hokage" th:text="'(' + ${ninja.rank} + ')'">(Hokage)</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="ninjas-list" th:if="${quest.ninjas == null or #lists.isEmpty(quest.ninjas)}">
+        <h3>No Ninjas Assigned</h3>
+    </div>
+
+    <a class="back-btn" th:href="@{/quests/ui/showAll}">Back to List</a>
+</div>
+</body>
+</html>
