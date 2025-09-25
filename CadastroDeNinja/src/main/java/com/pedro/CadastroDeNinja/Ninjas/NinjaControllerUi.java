@@ -1,9 +1,6 @@
 package com.pedro.CadastroDeNinja.Ninjas;
 
 import com.pedro.CadastroDeNinja.Quests.QuestService;
-import org.springframework.boot.Banner;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +23,7 @@ public class NinjaControllerUi {
     public String showAll(Model model){
         List<NinjaDTO> ninjas = ninjaService.showAllNinjas();
         model.addAttribute("ninjas",ninjas);
-        return "showAllNinjas";
+        return "ninjas/showAllNinjas";
     }
 
     @GetMapping("delete/{id}")
@@ -42,17 +39,17 @@ public class NinjaControllerUi {
 
         if (ninja!=null){
             model.addAttribute("ninja",ninja);
-            return "ninjaDetails";
+            return "ninjas/ninjaDetails";
         }else{
-            model.addAttribute("messagem","Ninja not found");
-            return "showAllNinjas";
+            model.addAttribute("message","Ninja not found");
+            return "ninjas/showAllNinjas";
         }
     }
     @GetMapping("create")
     public String createNinja(Model model ){ // @RequestBody
         model.addAttribute("ninja", new NinjaDTO());
         model.addAttribute("quests",questService.showAllQuests());
-        return "addNinja";
+        return "ninjas/addNinja";
     }
     @PostMapping("save")
     public String saveNinja(@ModelAttribute NinjaDTO ninjaDTO, RedirectAttributes redirectAttributes){
@@ -66,10 +63,10 @@ public class NinjaControllerUi {
         if(ninjaDTO!=null) {
             model.addAttribute("ninja", ninjaDTO);
             model.addAttribute("quests",questService.showAllQuests());
-            return "updateNinja";
+            return "ninjas/updateNinja";
         }
         model.addAttribute("message", "Ninja with ID " + id + " not found");
-        return "showAllNinjas";
+        return "ninjas/showAllNinjas";
     }
     @PostMapping("update/{id}")
     public String update(@PathVariable long id, @ModelAttribute NinjaDTO ninjaDTO, RedirectAttributes redirectAttributes){
