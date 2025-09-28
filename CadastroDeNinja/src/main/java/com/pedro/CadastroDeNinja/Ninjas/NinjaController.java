@@ -1,5 +1,7 @@
 package com.pedro.CadastroDeNinja.Ninjas;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +20,17 @@ public class NinjaController {
     }
 
 
-    @GetMapping("welcome")
-    public String welcome(){
-        return "Welcome to Cadastro de Ninja!";
-    }
+
     //add ninja (Create)
     @PostMapping("create")
+    @Operation(
+            summary = "Create a new Ninja",
+            description = "Creates a new Ninja with the provided details and returns a confirmation message.",
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Ninja successfully created"),
+                    @ApiResponse(responseCode = "400", description = "Invalid input data")
+            }
+    )
     public ResponseEntity<String> createNinja(@RequestBody NinjaDTO newNinja ){ // @RequestBody
         NinjaDTO ninjaDTO =  ninjaService.createNinja(newNinja);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -34,6 +41,14 @@ public class NinjaController {
 
     //search ninja by id (Read)
     @GetMapping("search/{id}")
+    @Operation(
+            summary = "Search Ninja by ID",
+            description = "Retrieves a Ninja’s details using their unique ID.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Ninja found"),
+                    @ApiResponse(responseCode = "404", description = "Ninja not found")
+            }
+    )
     public ResponseEntity<?> searchById(@PathVariable Long id){
         NinjaDTO ninjaDTO = ninjaService.searchById(id);
 
@@ -48,6 +63,15 @@ public class NinjaController {
 
     //change ninja data (Update)
     @PutMapping("update/{id}")
+    @Operation(
+            summary = "Update an existing Ninja",
+            description = "Updates the information of an existing Ninja using their ID.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Ninja successfully updated"),
+                    @ApiResponse(responseCode = "404", description = "Ninja not found"),
+                    @ApiResponse(responseCode = "400", description = "Invalid input data")
+            }
+    )
     public ResponseEntity<?> updateNinja(@PathVariable Long id, @RequestBody NinjaDTO updatedNinja){
         if(ninjaService.searchById(id)!=null){
            NinjaDTO ninjaDTO =  ninjaService.updateNinja(id, updatedNinja);
@@ -58,6 +82,13 @@ public class NinjaController {
     }
     //show all (Read)
     @GetMapping("showAll")
+    @Operation(
+            summary = "Retrieve all Ninjas",
+            description = "Returns a list of all Ninjas currently stored.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "List of Ninjas retrieved successfully")
+            }
+    )
     public ResponseEntity<List<NinjaDTO>> showAll(){
         List<NinjaDTO> ninjaDTOList = ninjaService.showAllNinjas();
         return ResponseEntity.ok(ninjaDTOList);
@@ -65,6 +96,14 @@ public class NinjaController {
 
     //delete ninja (Deleted)
     @DeleteMapping("delete/{id}")
+    @Operation(
+            summary = "Delete a Ninja by ID",
+            description = "Deletes the Ninja with the specified ID from the system.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Ninja successfully deleted"),
+                    @ApiResponse(responseCode = "404", description = "Ninja not found")
+            }
+    )
     public ResponseEntity<String> deleteNinja(@PathVariable Long id){
         if (ninjaService.searchById(id)!=null) {
             ninjaService.deleteNinja(id);
